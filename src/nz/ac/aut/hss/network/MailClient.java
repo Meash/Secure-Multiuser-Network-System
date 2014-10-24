@@ -11,16 +11,13 @@ import java.util.Properties;
  * @author Martin Schrimpf
  * @created 24.10.2014
  */
-public abstract class MailClient {
+public abstract class MailClient extends AbstractMailClient {
 	public static interface Defaults {
 		public final int RESPONSE_TIMEOUT = 300000;
 		public final int BUFFER_SIZE = 65536;
 		public final int FETCH_SIZE = 819200;
 	}
 
-
-	protected final String host;
-	protected Session session;
 
 	private final MailAuthenticator authenticator;
 	private Store store;
@@ -36,9 +33,7 @@ public abstract class MailClient {
 
 
 	public MailClient(String host, final MailAuthenticator authenticator, int bufferSize) {
-		if (host == null)
-			throw new IllegalArgumentException("host must not be null");
-		this.host = host;
+		super(host);
 		this.authenticator = authenticator;
 
 		if (bufferSize < 1) throw new IllegalArgumentException("bufferSize must be greater than zero");
@@ -48,19 +43,18 @@ public abstract class MailClient {
 	/**
 	 * Connects using the set values.
 	 */
-	public void connect() throws MessagingException {
-		if (session == null)
-			session = createSession();
-		if (store == null) {
-			store = session.getStore("imap");
+	public void connect() throws ConnectionException {
+		try {
+			if (store == null) {
+				store = session.getStore("imap");
+			}
+			store.connect(host, authenticator.getUsername(), authenticator.getPassword());
+		} catch (MessagingException e) {
+			throw new ConnectionException("Could not connect", e);
 		}
-		store.connect(host, authenticator.getUsername(), authenticator.getPassword());
 	}
 
-	private Session createSession() {
-		return createSession(System.getProperties());
-	}
-
+	@Override
 	protected Session createSession(final Properties properties) {
 		// set timeout
 		properties.setProperty("mail.imap.connectionpooltimeout", Defaults.RESPONSE_TIMEOUT + "");
@@ -70,7 +64,7 @@ public abstract class MailClient {
 		properties.setProperty("mail.imaps.partialfetch", "false");
 		// increase fetch size
 		properties.setProperty("mail.imap.fetchsize", Defaults.FETCH_SIZE + "");
-		return Session.getInstance(properties);
+		return super.createSession(properties);
 	}
 
 
