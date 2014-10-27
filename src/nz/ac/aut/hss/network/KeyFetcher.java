@@ -21,7 +21,7 @@ public class KeyFetcher {
 	 * @throws KeyStoreException 
 	 * @throws UnrecoverableKeyException 
 	 */
-	/*
+	
 	public static void main(String[] args) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
 		KeyFetcher keyFetch = new KeyFetcher("keystoreA", "aliasA");
 		//Test getting private key from key store works
@@ -30,8 +30,11 @@ public class KeyFetcher {
 		System.out.println(encoder.encode(key.getEncoded()));
 		//Test getting public key from file works
 		PublicKey publicKey = (PublicKey) keyFetch.getPublicKey("certA.cer");
-		System.out.println(publicKey);
-	} */
+		System.out.println("\nPublic key of A from file system of B\n" + publicKey);
+		//Test get public key of user B from trust store of user A
+		PublicKey publicKeyFromTrust = (PublicKey) keyFetch.getPublicKeySecure("truststoreA", "password".toCharArray(),"aliasB");
+		System.out.println("\nPublic Key of B from user A's truststore:\n " +publicKeyFromTrust);
+	} 
 
 	private static String keyStore;
 	private static String alias;
@@ -82,5 +85,24 @@ public class KeyFetcher {
 		CertificateFactory certFactory = CertificateFactory.getInstance("X509");
 		X509Certificate certificate = (X509Certificate)certFactory.generateCertificate(is);
 		return certificate.getPublicKey();
+	}
+	
+	/**
+	 * A somewhat more secure version of getPublicKey() in that it gets the public key from a trust store to prevent 
+	 * possible tampering of the public key, which could happen if the public certificate is store unprotected on the  file system. 
+	 * This is because on the file system it is not password protected, and also file permissions may allow other users of
+	 * a multiuser OS with write access to that file to modify it and insert a malicious (the attackers own?)public certificate.
+	 * 
+	 * @param String trustStoreName  The name of the truststore to load.
+	 * @return a public key
+	 * @throws IOException 
+	 * @throws CertificateException 
+	 * @throws NoSuchAlgorithmException 
+	 * @throws KeyStoreException 
+	 */
+	public Key getPublicKeySecure(String trustStoreName, char[] storepw, String certAlias) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
+		KeyStore truststore = loadKeyStore(trustStoreName, storepw);//Truststore and Keystore implementation is identical in keytool
+		X509Certificate cert = (X509Certificate) truststore.getCertificate(certAlias);
+		return cert.getPublicKey();
 	}
 }
