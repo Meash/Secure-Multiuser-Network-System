@@ -1,6 +1,7 @@
 package nz.ac.aut.hss.network.mail;
 
 import javax.mail.*;
+import javax.mail.search.DateTerm;
 import javax.mail.search.ReceivedDateTerm;
 import java.io.IOException;
 import java.util.Date;
@@ -32,10 +33,9 @@ public class MailReceiver {
 	public Message[] waitForMessages() throws MessagingException, InterruptedException {
 		Message[] messages;
 		while (true) {
-			messages = mailClient.getMessages(inboxFolder,
-					new ReceivedDateTerm(1, lastUpdateDate));
-			lastUpdateDate = new Date();
+			messages = mailClient.getMessages(inboxFolder, new ReceivedDateTerm(DateTerm.GE, lastUpdateDate));
 			if (messages.length != 0) {
+				lastUpdateDate = new Date();
 				break;
 			} else {
 				Thread.sleep(UPDATE_TIMEOUT);

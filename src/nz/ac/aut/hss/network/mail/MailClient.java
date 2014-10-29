@@ -100,6 +100,11 @@ public class MailClient extends AbstractMailClient {
 		}
 	}
 
+	public Message[] getMessages(Folder folder) throws MessagingException,
+			InterruptedException {
+		return getMessages(folder, null);
+	}
+
 	public Message[] getMessages(Folder folder, SearchTerm searchTerm) throws MessagingException,
 			InterruptedException {
 		ensureFolderIsOpen(folder, Folder.READ_ONLY);

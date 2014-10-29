@@ -105,13 +105,13 @@ public class Application {
 					Message[] msgs = mailReceiver.waitForMessages();
 					for (Message msg : msgs) {
 						System.out.println("Message received");
-						System.out.printf("%10s: %s\n",
+						System.out.printf("%-10s: %s\n",
 								"From",
 								MailUtils.getSenderAddress((MimeMessage) msg).toString());
-						System.out.printf("%10s: %s\n",
+						System.out.printf("%-10s: %s\n",
 								"Subject",
 								msg.getSubject());
-						System.out.printf("%10s: %s\n",
+						System.out.printf("%-10s: %s\n",
 								"Text",
 								MailReceiver.extractText(msg));
 					}
