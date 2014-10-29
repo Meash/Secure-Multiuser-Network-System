@@ -1,4 +1,4 @@
-package nz.ac.aut.hss.network;
+package nz.ac.aut.hss.network.mail;
 
 /**
  * @author Martin Schrimpf

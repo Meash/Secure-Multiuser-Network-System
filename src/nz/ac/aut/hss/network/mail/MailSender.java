@@ -1,6 +1,7 @@
-package nz.ac.aut.hss.network;
+package nz.ac.aut.hss.network.mail;
 
 import com.sun.istack.internal.Nullable;
+import nz.ac.aut.hss.network.Application;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -26,9 +27,9 @@ public class MailSender extends AbstractMailClient {
 	/**
 	 * @param authenticator if the authenticator is null, a connect without authentication is attempted
 	 */
-	public MailSender(final String host, final MailAuthenticator authenticator, final String address,
+	public MailSender(final String host, int port, final MailAuthenticator authenticator, final String address,
 					  final String senderName) {
-		super(host);
+		super(host, port);
 		this.authenticator = authenticator;
 		if (address == null || address.isEmpty())
 			throw new IllegalArgumentException("address must not be null or empty");
@@ -40,11 +41,13 @@ public class MailSender extends AbstractMailClient {
 	}
 
 	@Override
-	protected Session createSession(final Properties properties) {
-		properties.setProperty("mail.smtp.auth", authenticator != null ? "true" : "false");
-		properties.setProperty("mail.smtp.host", host);
-		properties.setProperty("mail.smtp.ssl.trust", host);
-		return super.createSession(properties);
+	protected Session createSession(final Properties props) {
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.debug", Application.DEBUG ? "true" : "false");
+		props.put("mail.smtp.port", port);
+		props.put("mail.smtp.starttls.enable", "true");
+		return super.createSession(props);
 	}
 
 	@Override
@@ -54,6 +57,7 @@ public class MailSender extends AbstractMailClient {
 			if (transport == null) {
 				transport = session.getTransport("smtp");
 			}
+
 			if (authenticator != null)
 				transport.connect(host, authenticator.getUsername(), authenticator.getPassword());
 			else

@@ -1,4 +1,4 @@
-package nz.ac.aut.hss.network;
+package nz.ac.aut.hss.network.mail;
 
 import javax.mail.Session;
 import java.util.Properties;
@@ -8,16 +8,12 @@ import java.util.Properties;
  * @created 18.07.2014
  */
 public abstract class AbstractMailClient  {
-	/** Default values */
-	public static interface Defaults {
-		public final int IDLE_TIMEOUT = 1800000;
-		public final int CONNECT_TIMEOUT = 5000;
-	}
-
 	protected final String host;
+	protected final int port;
 	protected Session session;
 
-	protected AbstractMailClient(final String host) {
+	protected AbstractMailClient(final String host, final int port) {
+		this.port = port;
 		if (host == null)
 			throw new IllegalArgumentException("host must not be null");
 		this.host = host;

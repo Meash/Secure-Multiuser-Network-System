@@ -1,4 +1,4 @@
-package nz.ac.aut.hss.network;
+package nz.ac.aut.hss.network.mail;
 
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
