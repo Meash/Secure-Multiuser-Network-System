@@ -4,7 +4,9 @@ import javax.mail.*;
 import javax.mail.search.DateTerm;
 import javax.mail.search.ReceivedDateTerm;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Martin Schrimpf
@@ -28,20 +30,30 @@ public class MailReceiver {
 
 	/**
 	 * Blocks until new messages have arrived.
-	 * @return an array of all new messages in the inbox
+	 * @return an array of all new messages in the inbox (non-null and contains at least one message)
 	 */
 	public Message[] waitForMessages() throws MessagingException, InterruptedException {
 		Message[] messages;
 		while (true) {
-			messages = mailClient.getMessages(inboxFolder, new ReceivedDateTerm(DateTerm.GE, lastUpdateDate));
+			messages = mailClient.getMessages(inboxFolder, new ReceivedDateTerm(DateTerm.GT, lastUpdateDate)); // only takes the date into account, not the time
+			messages = filter(messages, lastUpdateDate);
 			if (messages.length != 0) {
 				lastUpdateDate = new Date();
-				break;
+				return messages;
 			} else {
 				Thread.sleep(UPDATE_TIMEOUT);
 			}
 		}
-		return messages;
+	}
+
+	private Message[] filter(final Message[] messages, final Date date) throws MessagingException { // work around imap search term only querying for date
+		List<Message> result = new ArrayList<Message>();
+		for (Message message : messages) {
+			Date msgDate = message.getReceivedDate();
+			if(msgDate.compareTo(date) > 0)
+				result.add(message);
+		}
+		return result.toArray(new Message[result.size()]);
 	}
 
 	public static String extractText(final Message msg) throws IOException, MessagingException {
