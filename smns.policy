@@ -1,0 +1,37 @@
+/**
+   JAASExample.policy security policy file for running
+   JAASExampleClient with restricted security permissions
+*/
+//keystore "file:keystoreA", "JKS";
+grant
+{
+permission java.lang.RuntimePermission "accessClassInPackage.sun.misc"; //Required for BASE64Coder in KeyFetcher to work, doesn't work on principal?
+permission java.lang.RuntimePermission "accessClassInPackage.sun.misc.*";
+permission java.util.PropertyPermission "java.security.policy", "write"; //Needed to set system policy file in main() class of LoginClient?
+permission java.lang.RuntimePermission "createSecurityManager";
+permission java.lang.RuntimePermission "setSecurityManager";
+};
+// JAR file with SimpleLogin must be allowed to modify a principal
+grant codebase "file:./Simple.jar"
+{  permission javax.security.auth.AuthPermission "modifyPrincipals";
+};
+
+// JAR file with JAASExampleClient must be allowed to create a SimpleLogin
+// and invoke the doAsPrivledged method
+grant codebase "file:./JAASExample.jar"
+{  permission javax.security.auth.AuthPermission "createLoginContext.SimpleLogin";
+   permission javax.security.auth.AuthPermission "doAsPrivileged";
+};
+
+// JAR file with JAASExampleClient must be allowed to write to the
+// file "localfile.txt", and for access to files by KeyFetcher class, if user is authenticated principal "Jack"
+grant codebase "file:./JAASExample.jar" Principal simplejaasmodule.SimplePrincipal "Jack"
+{  permission java.io.FilePermission "localfile.txt", "write";
+   permission java.io.FilePermission "keystoreA", "read";
+   permission java.io.FilePermission "certA.cer", "read";
+   permission java.io.FilePermission "truststoreA", "read";
+   
+};
+
+
+
