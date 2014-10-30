@@ -24,6 +24,12 @@ public class Application {
 	public static void main(String[] args) throws Exception {
 		final String keyStore = "keystorename", alias = "user", keyStorePassword = "pass", keyPassword = "pass";
 		final Application app = new Application(keyStore, alias, keyStorePassword, keyPassword);
+		
+		System.out.println("Starting XMLSignerVerifier...");
+		String[] argv = {};
+		XMLSignerVerifier.main(argv);
+		System.out.println("OK");
+		
 		System.out.println("Connecting...");
 		app.init();
 		System.out.println("OK");
@@ -72,9 +78,9 @@ public class Application {
 	private void initKeys()
 			throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException,
 			IOException {
-		KeyFetcher keyFetch = new KeyFetcher("keystoreA", "aliasA");
+		KeyFetcher keyFetch = new KeyFetcher("keystoreA", "password".toCharArray());
 		//Test getting private key from key store works
-		Key key = keyFetch.getPrivateKey(keyStore, keyStorePassword.toCharArray(), alias, keyPassword.toCharArray());
+		Key key = keyFetch.getPrivateKey( alias, keyPassword.toCharArray());
 		BASE64Encoder encoder = new BASE64Encoder();
 		System.out.println(encoder.encode(key.getEncoded()));
 		//Test getting public key from file works

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><!-- ComputerBooks.xml document of a list of computer books --><books xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="books.xsd">
+   <description>
+      Some useful books for second year computer science
+   </description>
+   <book cover="soft" edition="2" isbn="0-321-24584-9">
+      <title>Java Software Structures</title>
+      <author>John Lewis</author>
+      <author>Joseph Chase</author>
+      <pub name="Addison Wesley" website="http://www.aw-bc.com/"/>
+   </book>
+   <book cover="hard" edition="2" isbn="0-02-354856-8">
+      <title>Computer Graphics Using OpenGL</title>
+      <author>Francis Hill</author>
+      <pub name="Prentice Hall" website="http://www.prenhall.com/"/>
+   </book>
+   <book cover="soft" edition="2" isbn="0-262-03293-7">
+      <title>Introduction To Algorithms</title>
+      <author>Thomas Corman</author>
+      <author>Charles Leiserson</author>
+      <author>Ronald Rivest</author>
+      <author>Clifford Stein</author>
+      <pub name="MIT Press" website="http://mitpress.mit.edu/"/>
+   </book>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>/MMGyYD1DPbQJDkj8CG5KZmPdYs=</DigestValue></Reference></SignedInfo><SignatureValue>FBeV3O5s0BB2Gfu21frJ2RsoR8ZwBnLh66MeuJaY0hFx7rTNBgM7MmvZfAe4yZ5E2OLOvYiL7nLP
+hv7gB4cg+E0p1KZDGIGqac61komcY5B92AQwgYBjho56X9sWZHt83A4wDM0vw+iyEwMWgWrJ0YtS
+SH/Kxx3a227HDus4uGJZcBe5qeObVM+9Lnz1LR4ZNR3+aKnB6Sv5lsfRicEUuAy8P1pZeB6r+R7H
+dfer8zqEQ5sqINpQeCfmJ0qq3zNISqhSxKO4M3neG+R0e8H9XFVm6x7B79zfGnV66BS5bvmu/5ou
+Lpr0lC1bvKCfMrhil+9HO4Tmj4OxH1upG+EbIw==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>u5lEyr5bzCuSDPS8QZXu0PnMsV1yzCKs24NW0P7lKzYl0tuPG8jc5qj+dCuKg8XXUqvMgMKFN3qI
+IzhFlxbzxGNlN4zGc3OohmJWNRggrfG314XvYdfcJfNXEIf14VsQIGOwW+MHgz/MOmNpmZuKepOb
+MF/K3fPgO0JQsEXCQh7LWJzSDgfmznmHWMog3tRY+45vrwnOP4B12H5XMrIrEFIbs0Ju9KbDVcAV
+fPLK3fAkttP4SmnRKra6wt4g+lO0ltnfLU4gUjOLGJDEKYCY3TyfmgG075wZBY97QQemIgBriYpU
+KE+jppXLCHcSeyHPOsst2njVFPPC3N9a10xD4w==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></books>

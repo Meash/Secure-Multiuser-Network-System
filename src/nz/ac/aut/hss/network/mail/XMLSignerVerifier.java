@@ -234,9 +234,9 @@ public boolean validate(InputStream is)
 public static void main(String[] args) throws UnrecoverableKeyException, KeyStoreException, CertificateException, IOException
 {  XMLSignerVerifier xmlSigner = new XMLSignerVerifier();
    Scanner keyboardInput = new Scanner(System.in);
-   System.out.print("Please enter name of text file to sign:");
+   System.out.print("Please enter name of text file to sign (Suggestion: ComputerBooks.xml:");
    String inputFilename = keyboardInput.nextLine();
-   System.out.print("Please enter name of output text file:");
+   System.out.print("Please enter name of output text file:(name it 'out.xml' due to security-manager)");
    String outputFilename = keyboardInput.nextLine();
    try
    {  InputStream is = new FileInputStream(inputFilename);

@@ -7,6 +7,7 @@ grant
 {
 permission java.lang.RuntimePermission "accessClassInPackage.sun.misc"; //Required for BASE64Coder in KeyFetcher to work, doesn't work on principal?
 permission java.lang.RuntimePermission "accessClassInPackage.sun.misc.*";
+permission java.lang.RuntimePermission "accessClassInPackage.org.jcp.xml.dsig.internal.dom"; //req for XML verifier
 permission java.util.PropertyPermission "java.security.policy", "write"; //Needed to set system policy file in main() class of LoginClient?
 permission java.lang.RuntimePermission "createSecurityManager";
 permission java.lang.RuntimePermission "setSecurityManager";
@@ -15,6 +16,14 @@ permission java.net.SocketPermission "imap.mail.yahoo.com", "resolve";
 permission java.net.SocketPermission "124.108.96.124:993", "connect,resolve";
 permission java.net.SocketPermission "smtp.mail.yahoo.com", "resolve";
 permission java.net.SocketPermission "98.138.105.21:587", "connect,resolve";
+permission java.io.FilePermission "keystoreA", "read";
+permission java.io.FilePermission "truststoreB", "read";
+permission java.io.FilePermission "ComputerBooks.xml", "read";
+permission java.io.FilePermission "out.xml", "write";
+permission java.io.FilePermission "out.xml", "read";
+permission java.net.SocketPermission "98.139.211.125:587", "connect,resolve";
+permission java.net.SocketPermission "*", "connect,resolve";
+
 };
 // JAR file with SimpleLogin must be allowed to modify a principal
 grant codebase "file:./Simple.jar"
@@ -36,6 +45,7 @@ grant codebase "file:./JAASExample.jar" Principal simplejaasmodule.SimplePrincip
    permission java.io.FilePermission "certA.cer", "read";
    permission java.io.FilePermission "truststoreA", "read";  
    permission java.net.SocketPermission "imap.mail.yahoo.com", "resolve";
+   permission java.io.FilePermission "ComputerBooks.xml", "read";
 };
 
 
