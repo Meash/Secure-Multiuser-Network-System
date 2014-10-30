@@ -105,14 +105,26 @@ public class SimpleLoginModule implements LoginModule
    // helper method that tries to validate the user name and password
    // note in practice this would be checked in a secure database
    private boolean validate(String name, char[] password)
-   {  String validName = "Jack";
-      char[] validPassword = {'c','h','a','n','g','e','i','t'};
-      boolean validated = name.equals(validName) &&
-         password.length==validPassword.length;
-      if (validated)
-      {  for (int i=0; i<password.length; i++)
-            if (password[i] != validPassword[i])
-               validated = false;
+   {  String validName = "Jack", validName2 = "Jill";
+      char[] validPassword = {'c','h','a','n','g','e','i','t'}, validPassword2 = {'p','a','s','s'};
+      boolean validated = false;
+      //Jack
+      if(name.equals(validName)) {
+	      validated =  password.length==validPassword.length;
+	      if (validated)
+	      {  for (int i=0; i<password.length; i++)
+	            if (password[i] != validPassword[i])
+	               validated = false;
+	      }
+      }
+      //Jill
+      if(name.equals(validName2)) {
+	      validated = password.length==validPassword2.length;
+	      if (validated)
+	      {  for (int i=0; i<password.length; i++)
+	            if (password[i] != validPassword2[i])
+	               validated = false;
+	      }
       }
       // output debugging information
       if (debugEnabled)

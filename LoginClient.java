@@ -54,31 +54,13 @@ public class LoginClient implements PrivilegedAction<Boolean>
    {  
 	   
 	   try {
-		   KeyFetcher.testKeyFetcher();
+		   //KeyFetcher.testKeyFetcher();
+		   String[] args = {};
+		   Application.main(args);
 	   }
-	   catch (UnrecoverableKeyException e)
+	   catch (Exception e)
 	      {
-	    	  System.err.println("UnrecoverableKeyException while writing file: " + e);
-	    	  return false;
-	      }
-	   catch (KeyStoreException e)
-	      {
-	    	  System.err.println("KeyStoreException while writing file: " + e);
-	    	  return false;
-	      }
-	   catch (NoSuchAlgorithmException e)
-	      {
-	    	  System.err.println("NoSuchAlgorithmException while writing file: " + e);
-	    	  return false;
-	      }
-	   catch (CertificateException e)
-	      {
-	    	  System.err.println("CertificateException while writing file: " + e);
-	    	  return false;
-	      }
-	   catch (IOException e)
-	      {
-	    	  System.err.println("IOException while writing file: " + e);
+	    	  System.err.println("Exception while writing file: " + e);
 	    	  return false;
 	      }
 	      

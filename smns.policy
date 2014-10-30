@@ -10,6 +10,11 @@ permission java.lang.RuntimePermission "accessClassInPackage.sun.misc.*";
 permission java.util.PropertyPermission "java.security.policy", "write"; //Needed to set system policy file in main() class of LoginClient?
 permission java.lang.RuntimePermission "createSecurityManager";
 permission java.lang.RuntimePermission "setSecurityManager";
+permission java.util.PropertyPermission "*", "read,write"; // Not sure why this error occurred when SM enabled
+permission java.net.SocketPermission "imap.mail.yahoo.com", "resolve";
+permission java.net.SocketPermission "124.108.96.124:993", "connect,resolve";
+permission java.net.SocketPermission "smtp.mail.yahoo.com", "resolve";
+permission java.net.SocketPermission "98.138.105.21:587", "connect,resolve";
 };
 // JAR file with SimpleLogin must be allowed to modify a principal
 grant codebase "file:./Simple.jar"
@@ -29,8 +34,8 @@ grant codebase "file:./JAASExample.jar" Principal simplejaasmodule.SimplePrincip
 {  permission java.io.FilePermission "localfile.txt", "write";
    permission java.io.FilePermission "keystoreA", "read";
    permission java.io.FilePermission "certA.cer", "read";
-   permission java.io.FilePermission "truststoreA", "read";
-   
+   permission java.io.FilePermission "truststoreA", "read";  
+   permission java.net.SocketPermission "imap.mail.yahoo.com", "resolve";
 };
 
 
