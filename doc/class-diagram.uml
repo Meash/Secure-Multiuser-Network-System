@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>nz.ac.aut.hss.network</OriginalElement>
+  <nodes>
+    <node x="784.0" y="822.0">nz.ac.aut.hss.network.mail.MailClient.Defaults</node>
+    <node x="701.8186274509804" y="33.0">nz.ac.aut.hss.network.mail.MailAuthenticator</node>
+    <node x="0.0" y="1707.0">nz.ac.aut.hss.network.mail.MailUtils</node>
+    <node x="504.99999999999994" y="755.0">nz.ac.aut.hss.network.KeyFetcher</node>
+    <node x="0.0" y="822.0">nz.ac.aut.hss.network.mail.XMLSignerVerifier.KeyValueKeySelector</node>
+    <node x="1175.5686274509803" y="0.0">nz.ac.aut.hss.network.mail.AbstractMailClient</node>
+    <node x="941.0" y="722.0">nz.ac.aut.hss.network.mail.MailReceiver</node>
+    <node x="198.98529411764707" y="1177.0">nz.ac.aut.hss.network.mail.XMLSignerVerifier</node>
+    <node x="151.98529411764707" y="1588.0">nz.ac.aut.hss.network.mail.XMLSignerVerifier.SimpleKeySelectorResult</node>
+    <node x="883.0686274509806" y="1023.0">nz.ac.aut.hss.network.Application</node>
+    <node x="1290.0" y="289.0">nz.ac.aut.hss.network.mail.MailSender</node>
+    <node x="787.0" y="311.0">nz.ac.aut.hss.network.mail.MailClient</node>
+    <node x="" y="">nz.ac.aut.hss.network.mail.ConnectionException</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="nz.ac.aut.hss.network.mail.XMLSignerVerifier" target="nz.ac.aut.hss.network.mail.XMLSignerVerifier.KeyValueKeySelector">
+      <point x="-121.0" y="-103.5" />
+      <point x="259.4852941176471" y="1003.0" />
+      <point x="242.5" y="1003.0" />
+      <point x="-2.8421709430404007E-14" y="25.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.MailSender" target="nz.ac.aut.hss.network.mail.ConnectionException">
+      <point x="142.33333333333326" y="-191.5" />
+      <point x="1645.8333333333333" y="269.0" />
+      <point x="1694.9877450980393" y="269.0" />
+      <point x="64.25" y="69.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.MailClient" target="nz.ac.aut.hss.network.mail.MailAuthenticator">
+      <point x="-161.0" y="-169.5" />
+      <point x="867.5" y="269.0" />
+      <point x="865.8186274509804" y="269.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.MailClient" target="nz.ac.aut.hss.network.mail.AbstractMailClient">
+      <point x="0.0" y="-169.5" />
+      <point x="1028.5" y="259.0" />
+      <point x="1243.0686274509803" y="259.0" />
+      <point x="-67.5" y="114.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.Application" target="nz.ac.aut.hss.network.mail.MailSender">
+      <point x="231.66666666666674" y="-257.5" />
+      <point x="1392.7352941176473" y="1003.0" />
+      <point x="1553.5686274509806" y="1003.0" />
+      <point x="1553.5686274509806" y="697.0" />
+      <point x="1610.25" y="697.0" />
+      <point x="106.75" y="191.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.Application" target="nz.ac.aut.hss.network.mail.MailReceiver">
+      <point x="-46.333333333333485" y="-257.5" />
+      <point x="1114.735294117647" y="1003.0" />
+      <point x="1028.5" y="1003.0" />
+      <point x="-87.5" y="125.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.MailClient" target="nz.ac.aut.hss.network.mail.ConnectionException">
+      <point x="161.0" y="-169.5" />
+      <point x="1189.5" y="269.0" />
+      <point x="1566.4877450980393" y="269.0" />
+      <point x="-64.25" y="69.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.XMLSignerVerifier.SimpleKeySelectorResult" target="nz.ac.aut.hss.network.mail.XMLSignerVerifier">
+      <point x="66.25" y="-37.0" />
+      <point x="350.7352941176471" y="1563.0" />
+      <point x="380.4852941176471" y="1563.0" />
+      <point x="0.0" y="103.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.Application" target="nz.ac.aut.hss.network.mail.MailAuthenticator">
+      <point x="-139.0" y="-257.5" />
+      <point x="1022.0686274509806" y="993.0" />
+      <point x="767.5" y="993.0" />
+      <point x="767.5" y="269.0" />
+      <point x="756.4852941176471" y="269.0" />
+      <point x="-109.33333333333337" y="81.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.MailSender" target="nz.ac.aut.hss.network.mail.AbstractMailClient">
+      <point x="0.0" y="-191.5" />
+      <point x="1503.5" y="259.0" />
+      <point x="1378.0686274509803" y="259.0" />
+      <point x="67.5" y="114.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.XMLSignerVerifier" target="nz.ac.aut.hss.network.KeyFetcher">
+      <point x="121.0" y="-103.5" />
+      <point x="501.4852941176471" y="1003.0" />
+      <point x="568.0" y="1003.0" />
+      <point x="-63.0" y="92.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.MailSender" target="nz.ac.aut.hss.network.mail.MailAuthenticator">
+      <point x="-142.33333333333348" y="-191.5" />
+      <point x="1361.1666666666665" y="249.0" />
+      <point x="975.1519607843138" y="249.0" />
+      <point x="109.33333333333337" y="81.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.XMLSignerVerifier.KeyValueKeySelector" target="nz.ac.aut.hss.network.mail.XMLSignerVerifier.SimpleKeySelectorResult">
+      <point x="-161.66666666666663" y="25.5" />
+      <point x="80.83333333333337" y="1003.0" />
+      <point x="188.48529411764707" y="1003.0" />
+      <point x="188.48529411764707" y="1563.0" />
+      <point x="218.23529411764707" y="1563.0" />
+      <point x="-66.25" y="-37.0" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.Application" target="nz.ac.aut.hss.network.KeyFetcher">
+      <point x="-231.66666666666674" y="-257.5" />
+      <point x="929.4019607843138" y="1003.0" />
+      <point x="694.0" y="1003.0" />
+      <point x="63.0" y="92.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.MailClient.Defaults" target="nz.ac.aut.hss.network.mail.MailClient">
+      <point x="0.0" y="-25.5" />
+      <point x="852.5" y="697.0" />
+      <point x="867.5" y="697.0" />
+      <point x="-161.0" y="169.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.XMLSignerVerifier.KeyValueKeySelector" target="nz.ac.aut.hss.network.mail.XMLSignerVerifier">
+      <point x="161.66666666666663" y="25.5" />
+      <point x="404.16666666666663" y="1003.0" />
+      <point x="380.4852941176471" y="1003.0" />
+      <point x="0.0" y="-103.5" />
+    </edge>
+    <edge source="nz.ac.aut.hss.network.mail.MailReceiver" target="nz.ac.aut.hss.network.mail.MailClient">
+      <point x="-87.5" y="-125.5" />
+      <point x="0.0" y="169.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.30944444444444447" x="880.0" y="889.9999999999999" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
