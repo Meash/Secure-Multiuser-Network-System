@@ -1,0 +1,30 @@
+Description of Software Project:
+
+This is a project that is designed to be a secure multiuser network system. It communications via email with itself, or another instance, to send and receive messages. 
+
+Components and Features:
+-JAAS Authentication using credentials "Jack" and password "changeit", and "Jill" and password "pass".
+-Security Manager set with Policy file that allows Jack and Jill to do certain actions.
+-Keystores that store RSA keypairs for two users, userA and userB. This could be extended in future to make these be called Jack and Jill etc. so they match the JAAS credentials. 
+-Email commmunication (sending and receiving using  Yahoo! test account)
+-Truststores that each user has to store other peoples public key certs.
+
+Details of Security Features;
+The Truststores store other users public key certifictes, see the readme for specific details. The keys are RSA based 2048 bits
+So for example, userA would have a truststore called truststoreA, that would hold public key cert for userB.
+
+The keystores, hold the private keys and are password protected, with both a storepassword and a key password(currently they are the same for testing purposes).
+
+Security Manager and Policy File has permissions for Jack fully working, though for Jill they are not. This is to show the differences for demonstration purposes - Jill has not been given specific privileges, though should inherit the global grant right, I believe. Currently, some policy rights were not able to be set using a codebase grant, and had to just use a normal "grant". Did not get time to fix or investigate why.
+
+XML signing and verificationw works, uisng signing with private key from keystore of userA and verificatin with public RSA key  of userA from truststore of other useB. In future would be simple to just attach the document to the email, though this is not done due to time contraints.
+
+How it Counters attacks:
+
+The system counters attack by using keystores/truststores to securely hold keys, so attackers cannot modify them. The public certs rather than just being read from filesystem can be read from truststore, which protects the public key cert from a malicious attacker. Also, authentication of information sent accross the network is demonstrated to work using a signed XML document. It is not encrypted yet though.
+
+Basic User Documentation:
+See keytoolreadme.txt for instructions of how to generate keystores/truststores
+and jassReadme.txt for notes on compiling, setting classpath, building JAR files, running LoginClient to start program in CLI
+
+
