@@ -11,11 +11,11 @@ import java.security.cert.X509Certificate;
 
 public class KeyFetcher {
 	private final String keyStore;
-	private final String alias;
+	private char[] storepw;
 
-	public KeyFetcher(String keyStore, String alias) {
+	public KeyFetcher(String keyStore, char[] storepw) {
 		this.keyStore = keyStore;
-		this.alias = alias;
+		this.storepw = storepw;
 	}
 
 	/**
@@ -44,10 +44,10 @@ public class KeyFetcher {
 	 * @throws IOException
 	 * @throws CertificateException
 	 */
-	public Key getPrivateKey(String keyStoreName, char[] storepw, String keyAlias, char[] keypw)
+	public Key getPrivateKey(String keyAlias, char[] keypw)
 			throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException,
 			IOException {
-		KeyStore keystore = loadKeyStore(keyStoreName, storepw);
+		KeyStore keystore = loadKeyStore(this.keyStore, this.storepw);
 		return keystore.getKey(keyAlias, keypw);
 	}
 
